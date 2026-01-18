@@ -1,8 +1,8 @@
 import './circulo.css'
 
-function CirculoSeguidor({Texto,x}){
+function CirculoSeguidor({Texto,style}){
     return(
-        <div className='circulo' style={{transform:`translate(${x}px,0px)`}}>
+        <div className='circulo' style={style} >
             {Texto}
         </div>
     )

@@ -6,6 +6,7 @@ import CirculoSeguidor from './components/circulo.jsx'
 function App() {
     const [enable,setEnable] = useState(false)
     const [position,setPosition] = useState({x:0,y:0})
+    const [position2,setPosition2] = useState({x:0,y:0})
     useEffect(
     ()=>{
       if(enable==true){
@@ -13,7 +14,9 @@ function App() {
     const pointerMove = (event)=>{
     const {clientX,clientY} = event
     console.log(clientX)
-    setPosition({x:clientX,y:clientY})
+    setPosition({x:clientX+10,y:clientY+10})
+    
+    setPosition2({x:clientX+50,y:clientY+50})
     //setEnable(clientX) 
     }
      window.addEventListener('pointermove',pointerMove)
@@ -36,7 +39,8 @@ function App() {
       {enable}
     </button>
 
-    <CirculoSeguidor Texto={"hola"} x={position.x}/>
+    <CirculoSeguidor style={{transform:`translate(${position.x}px,${position.y}px)`}} Texto={'hola'}/>
+    <CirculoSeguidor style={{transform:`translate(${position2.x}px,${position2.y}px)`}} Texto={'hola2'}/>
     </>
   )
 }
