@@ -9,14 +9,16 @@ function App() {
     const [position,setPosition] = useState({x:0,y:0})
     const [position2,setPosition2] = useState({x:0,y:0})
     const [randomPosition,setRandomPosition] = useState({x:0,y:0})
+    const [decrementar,setDecrementar] = useState(0)
     useEffect(
     ()=>{
       if(enable==true){
     const pointerMove = (event)=>{
     const {clientX,clientY} = event
     console.log(clientX)
-    setPosition({x:clientX+10,y:clientY+10})
-    
+    const decrementarNumero = decrementarNumero-  getRandomInt(50)
+    const clientXDecrement = clientX + 500-decrementarNumero
+    setPosition({x:clientXDecrement,y:clientY+100})
     setPosition2({x:clientX+50,y:clientY+50})
     //setEnable(clientX) 
         console.log("hola")
@@ -32,9 +34,18 @@ function App() {
     useEffect(()=>{
       if(enable==true){
       const interval = setInterval(()=>{
-        setRandomPosition({x:getRandomInt(480),y:getRandomInt(480)})}, getRandomInt(2000));
+        setRandomPosition({x:getRandomInt(480),y:getRandomInt(480)})}
+        , getRandomInt(2000));
     return ()=>clearInterval(interval)
     }},[enable])
+// useEffect circulos decrementar 
+
+useEffect(()=>{
+   const interval = setInterval (()=>{
+    setDecrementar()},2000
+  )
+}
+  ,[enable])
 
     function getRandomInt(max) {
     return Math.floor(Math.random() * max);
