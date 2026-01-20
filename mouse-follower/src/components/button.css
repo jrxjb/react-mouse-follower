@@ -1,5 +1,28 @@
 button {
+
+
+}
+
+.potion-closed{
   position: absolute; 
   top: 0;
   left: 0;
+   width: 20%;
+   height: 20%;
+}
+
+.potion-top{
+  width: 20%;
+  height: 40%;
+  border: 1px solid white;
+  background-color:#515151;
+  transform: translateX(190%);
+}
+
+.potion-body{
+  width: 60%;
+  aspect-ratio: 1 / 1;
+  background-color: blueviolet;
+  transform: translate(36%,-8%);
+  border-radius: 50%;
 }
