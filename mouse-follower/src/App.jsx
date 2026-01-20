@@ -5,25 +5,35 @@ import CirculoSeguidor from './components/circulo.jsx'
 import ButtonRadom from './components/button.jsx'
 
 function App() {
+  
+    const width = window.innerWidth 
+    const height = window.innerHeight
+
     const [enable,setEnable] = useState(false)
     const [position,setPosition] = useState({x:0,y:0})
-    const [contadorU, setContadorU] = useState()
-    const [randomPosition,setRandomPosition] = useState({x:0,y:0})
+    const [winner, setWinner] = useState(false)
+    const [randomPosition,setRandomPosition] = useState({x:width/2,y:height/2})
     const [decrementar,setDecrementar] = useState({x:0,y:0})
+    const [pantalla,setPantalla] = useState("jugando")
     useEffect(
     ()=>{
       if(enable==true){
     const pointerMove = (event)=>{
     const {clientX,clientY} = event
     setDecrementar({ x: clientX, y: clientY })
-
+      
     //setEnable(clientX) 
         console.log("hola")
+        setWinner(true)
+        setPantalla("jugando")
       }
           window.addEventListener('pointermove',pointerMove)
          return ()=>{window.removeEventListener('pointermove', pointerMove)} 
+       
       }
     }
+
+
       ,[enable,decrementar])
 
 //useEffect interval
@@ -31,30 +41,20 @@ function App() {
     useEffect(()=>{
       if(enable==true){
       const interval = setInterval(()=>{
-        setRandomPosition({x:getRandomInt(480),y:getRandomInt(480)})}
+        setRandomPosition({x:getRandomInt(width),y:getRandomInt(height)})}
         , getRandomInt(2000));
     return ()=>clearInterval(interval)
     }
-    const contador=+1
-    setContadorU(contador)
   },[enable,randomPosition])
 // useEffect circulos decrementar 
 
 useEffect(() => {
-  const xDecrementar = decrementar.x-decrementar.x*(contadorU/10)+100
-  const yDecrementar = decrementar.y-decrementar.y*(contadorU/10)+100
-
   if (enable) {
-     if(xDecrementar<0 || yDecrementar<0){
-      return setPosition({x:0, y:0})}
-        else{
-         setPosition({x:xDecrementar, y:yDecrementar});
-        }
-        return console.log(xDecrementar)
-     }
-    }
-, [enable, randomPosition]);
-
+    const x = position.x + (decrementar.x - position.x) * 0.001
+    const y = position.y + (decrementar.y - position.y) * 0.001
+    setPosition({ x, y })
+  }
+}, [enable, decrementar, position])
 
 
 
@@ -63,11 +63,23 @@ useEffect(() => {
 }
     const muestra = ()=>{
       setEnable(!enable);
+      if(winner==true&&enable==true){
+       setEnable(false)
+       setWinner(false)
+       setPantalla("you win")
+    }
     };
+ 
+    const clickToLoss=()=>{
+      setEnable(false)
+      setPantalla("Loss")
+      setRandomPosition({x:width/2,y:height/2})
+
+    }
   return (
     <>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
-    <CirculoSeguidor style={{transform:`translate(${position.x}px,${position.y}px)`}} Texto={'hola'}/>
+    <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x}px`, top: `${position.y}px` }} Texto={pantalla}/>    
     </>
   )
 }

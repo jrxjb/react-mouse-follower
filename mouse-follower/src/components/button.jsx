@@ -1,3 +1,5 @@
+import './button.css'
+
 function ButtonRadom({enable,muestraV,style}){
     
     return(

@@ -1,12 +1,12 @@
 import './circulo.css'
 
-function CirculoSeguidor({Texto,style}){
+function CirculoSeguidor({Texto,style,clickToLossProps}){
     return(
-        <div className='circulo' style={style} >
+        <div className='circulo' style={style} onClick={clickToLossProps} >
             {Texto}
         </div>
     )
 }
 
 export default CirculoSeguidor
-//style={{ left: `${x}px`, top: `${y}px` }}
+
