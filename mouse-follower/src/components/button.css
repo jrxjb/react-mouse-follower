@@ -9,27 +9,72 @@ button {
    left: 0;
    width: 20%;
    height: 20%;
-   background-color: aliceblue;
 }
 
 .potion-top{
   position: absolute;
-  top: -50%; 
-  left: -50%;
-  width: 20%;
+  top: 0%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18%;
   height: 40%;
-  border: 1px solid white;
-  background-color:#515151;
+  border: 2px solid white;
+  background-color:#a97869;
+  z-index: 2;
+}
+.potion-middle{
+  position:absolute;
+  width: 36%;
+  height: 20%;
+  background-color:gray;
+  border: 2px solid white;
+  top: 0%; 
+  left: 50%;
+  transform: translate(-50%,-40%);
+  z-index: 3;
 }
 
 .potion-body{
   width: 60%;
   aspect-ratio: 1 / 1;
-  background-color: blueviolet;
+  background-color:gray;
+  border: 2px solid white;;
   position: absolute;
   top: 50%;
   left: 50%;
  transform: translate(-50%, -50%);
   border-radius: 50%;
+  z-index: 1;
+  overflow: hidden;
 
+
+}
+
+.potion-liquid-top{
+  position:absolute;
+  background-color:rgb(131, 243, 234);
+  width: 100%;
+  height: 15%;
+  border-radius: 50%;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+ transform: translate(-50%, 10%);
+ border-radius:50%;
+ 
+
+}
+
+.potion-liquid{
+  position:absolute;
+  background-color:rgb(21, 235, 199);
+  width: 100%;
+  height: 50%;
+  border-radius: 50%;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+ transform: translate(-50%, 20%);
+ border-radius: 0% 0% 50% 50%;
+ 
 }
