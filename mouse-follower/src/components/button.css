@@ -5,24 +5,31 @@ button {
 
 .potion-closed{
   position: absolute; 
-  top: 0;
-  left: 0;
+   top: 0;
+   left: 0;
    width: 20%;
    height: 20%;
+   background-color: aliceblue;
 }
 
 .potion-top{
+  position: absolute;
+  top: -50%; 
+  left: -50%;
   width: 20%;
   height: 40%;
   border: 1px solid white;
   background-color:#515151;
-  transform: translateX(190%);
 }
 
 .potion-body{
   width: 60%;
   aspect-ratio: 1 / 1;
   background-color: blueviolet;
-  transform: translate(36%,-8%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+ transform: translate(-50%, -50%);
   border-radius: 50%;
+
 }
