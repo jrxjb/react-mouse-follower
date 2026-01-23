@@ -17,6 +17,7 @@ function App() {
     const [pantalla,setPantalla] = useState("jugando")
     useEffect(
     ()=>{
+
       if(enable==true){
     const pointerMove = (event)=>{
     const {clientX,clientY} = event
@@ -26,15 +27,31 @@ function App() {
         console.log("hola")
         setWinner(true)
         setPantalla("jugando")
+
+    
+        //Formula de la distancia 
+    const mx=position.x-clientX
+    const my=position.y-clientY
+    const distancia = Math.sqrt(mx*mx+my*my)   
+    const radio = 50
+   if(distancia<=radio){
+    setPantalla("Atrapado")
+    setEnable(false)
+    setWinner(false)
+    }
       }
+
+
           window.addEventListener('pointermove',pointerMove)
          return ()=>{window.removeEventListener('pointermove', pointerMove)} 
        
       }
+
+
     }
 
 
-      ,[enable,decrementar])
+      ,[enable])
 
 //useEffect interval
 
@@ -42,7 +59,7 @@ function App() {
       if(enable==true){
       const interval = setInterval(()=>{
         setRandomPosition({x:getRandomInt(width),y:getRandomInt(height)})}
-        , getRandomInt(2000));
+        , getRandomInt(1500));
     return ()=>clearInterval(interval)
     }
   },[enable,randomPosition])
@@ -50,11 +67,11 @@ function App() {
 
 useEffect(() => {
   if (enable) {
-    const x = position.x + (decrementar.x - position.x) * 0.001
-    const y = position.y + (decrementar.y - position.y) * 0.001
+    const x = position.x + (decrementar.x - position.x) * 0.1
+    const y = position.y + (decrementar.y - position.y) * 0.1
     setPosition({ x, y })
   }
-}, [enable, decrementar, position])
+}, [enable, decrementar])
 
 
 
