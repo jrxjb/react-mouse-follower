@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import CirculoSeguidor from './components/circulo.jsx'
 import ButtonRadom from './components/button.jsx'
 import TimerP from './components/timer.jsx'
+import TextP from './components/textoPantalla.jsx'
+
 function App() {
   
     const width = window.innerWidth 
@@ -127,9 +129,10 @@ useEffect(
   return (
     <>
     <div className='class-app'>
-    <TimerP timer={timer}/>
+    <TextP   style={{position:"absolute", top:'0%', left:"calc(50% - 75px)"}}/>
+    <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%'}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
-    <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} Texto={pantalla}/>    
+    <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      </div>
     </>
   )

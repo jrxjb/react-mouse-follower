@@ -1,0 +1,18 @@
+.timerP{
+
+    background-color:rgb(172, 108, 108);
+    border:solid 1px white;
+    color:black;
+    border-radius:20%;
+    height:80px;
+    width:100px;
+    font-size:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    align-items:center;
+    user-select:none;
+
+
+}

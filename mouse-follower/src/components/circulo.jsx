@@ -1,6 +1,6 @@
 import './circulo.css'
 
-function CirculoSeguidor({Texto,style,clickToLossProps}){
+function CirculoSeguidor({style,clickToLossProps}){
     return(
     
         <div className='npc' style={style} onClick={clickToLossProps} >
