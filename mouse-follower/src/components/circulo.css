@@ -3,7 +3,7 @@
     flex-direction:column;
     width:150px;
     aspect-ratio: 1 / 1;
-    position: relative;
+    position: absolute;
     align-items:center;
     justify-content:flex-start;
     gap: 0;

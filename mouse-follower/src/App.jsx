@@ -3,18 +3,20 @@ import './App.css'
 import { useEffect } from 'react'
 import CirculoSeguidor from './components/circulo.jsx'
 import ButtonRadom from './components/button.jsx'
-
+import TimerP from './components/timer.jsx'
 function App() {
   
     const width = window.innerWidth 
     const height = window.innerHeight
 
     const [enable,setEnable] = useState(false)
-    const [position,setPosition] = useState({x:0,y:0})
+    const [position,setPosition] = useState({x:(width*0.001),y:(height*0.001)})
     const [winner, setWinner] = useState(false)
     const [randomPosition,setRandomPosition] = useState({x:width/2,y:height/2})
     const [decrementar,setDecrementar] = useState({x:0,y:0})
     const [pantalla,setPantalla] = useState("jugando")
+    const [timer,setTimer] = useState(0)
+
     useEffect(
     ()=>{
 
@@ -28,17 +30,20 @@ function App() {
         setWinner(true)
         setPantalla("jugando")
 
-    
+
+
         //Formula de la distancia 
-    const mx=position.x-clientX
-    const my=position.y-clientY
+       /*
+    const mx=clientX-position.x
+    const my=clientY-position.y
     const distancia = Math.sqrt(mx*mx+my*my)   
-    const radio = 50
-   if(distancia<=radio){
+    const radio = 180
+   if(mx<=radio&my<=radio){
     setPantalla("Atrapado")
     setEnable(false)
     setWinner(false)
     }
+    */
       }
 
 
@@ -46,10 +51,7 @@ function App() {
          return ()=>{window.removeEventListener('pointermove', pointerMove)} 
        
       }
-
-
     }
-
 
       ,[enable])
 
@@ -59,7 +61,7 @@ function App() {
       if(enable==true){
       const interval = setInterval(()=>{
         setRandomPosition({x:getRandomInt(width),y:getRandomInt(height)})}
-        , getRandomInt(1500));
+        , getRandomInt(1000));
     return ()=>clearInterval(interval)
     }
   },[enable,randomPosition])
@@ -69,9 +71,34 @@ useEffect(() => {
   if (enable) {
     const x = position.x + (decrementar.x - position.x) * 0.1
     const y = position.y + (decrementar.y - position.y) * 0.1
+   // const x = decrementar.x
+  //  const y = decrementar.y
+
+    
     setPosition({ x, y })
   }
-}, [enable, decrementar])
+}, [ decrementar,randomPosition])
+
+// timer 
+useEffect(
+  ()=>{
+    if(enable){
+    const timerV = setInterval(()=>{
+      setTimer((prev)=>prev+1)},1200)
+
+    return () => clearInterval(timerV);
+        }}, 
+        [enable])
+   
+//timer stop
+
+useEffect(
+  ()=>{
+    if((timer>=15)&(enable)){
+      setEnable(false)
+    }
+  }
+  ,[timer])
 
 
 
@@ -93,10 +120,17 @@ useEffect(() => {
       setRandomPosition({x:width/2,y:height/2})
 
     }
+
+  
+
+
   return (
     <>
+    <div className='class-app'>
+    <TimerP timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
-    <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x}px`, top: `${position.y}px` }} Texto={pantalla}/>    
+    <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} Texto={pantalla}/>    
+     </div>
     </>
   )
 }
