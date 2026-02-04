@@ -16,7 +16,7 @@ function App() {
     const [winner, setWinner] = useState(false)
     const [randomPosition,setRandomPosition] = useState({x:width/2,y:height/2})
     const [decrementar,setDecrementar] = useState({x:0,y:0})
-    const [pantalla,setPantalla] = useState("jugando")
+    const [pantalla,setPantalla] = useState("")
     const [timer,setTimer] = useState(0)
 
     useEffect(
@@ -28,7 +28,6 @@ function App() {
     setDecrementar({ x: clientX, y: clientY })
       
     //setEnable(clientX) 
-        console.log("hola")
         setWinner(true)
         setPantalla("jugando")
 
@@ -113,6 +112,13 @@ useEffect(
        setEnable(false)
        setWinner(false)
        setPantalla("you win")
+
+    }
+    if(enable==false){
+       setPantalla("")
+       setRandomPosition({x:width/2,y:height/2})
+       setPosition({x:(width*0.001),y:(height*0.001)})
+       setTimer(0)
     }
     };
  
@@ -130,7 +136,7 @@ useEffect(
     <>
     <div className='class-app'>
     <TextP   style={{position:"absolute", top:'0%', left:"calc(50% - 75px)"}}/>
-    <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%'}} timer={timer}/>
+    <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      </div>

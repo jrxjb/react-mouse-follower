@@ -1,6 +1,6 @@
 .timerP{
 
-    background-color:rgb(172, 108, 108);
+    background-color:rgb(204, 146, 146);
     border:solid 1px white;
     color:black;
     border-radius:20%;
@@ -12,7 +12,7 @@
     justify-content:center;
     gap:5px;
     align-items:center;
-    user-select:none;
+    user-select:none
 
 
 }

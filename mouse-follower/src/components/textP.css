@@ -1,12 +1,13 @@
 .texpPS{
     display:flex;
     flex-direction:column;
-    background-color:blue;
+   /* background-color:blue;*/
     height:50px;
     width:250px;
      font-size:18px;
-     border:white solid 2px;
+   /*  border:white solid 2px;*/
      border-radius:20%;
      justify-content:center;
      align-items:center;
+     user-select:none;
 }
