@@ -5,6 +5,8 @@ import CirculoSeguidor from './components/circulo.jsx'
 import ButtonRadom from './components/button.jsx'
 import TimerP from './components/timer.jsx'
 import TextP from './components/textoPantalla.jsx'
+import ConfettiBoom from "react-confetti-boom";
+
 
 function App() {
   
@@ -32,19 +34,6 @@ function App() {
         setPantalla("jugando")
 
 
-
-        //Formula de la distancia 
-       /*
-    const mx=clientX-position.x
-    const my=clientY-position.y
-    const distancia = Math.sqrt(mx*mx+my*my)   
-    const radio = 180
-   if(mx<=radio&my<=radio){
-    setPantalla("Atrapado")
-    setEnable(false)
-    setWinner(false)
-    }
-    */
       }
 
 
@@ -72,8 +61,6 @@ useEffect(() => {
   if (enable) {
     const x = position.x + (decrementar.x - position.x) * 0.1
     const y = position.y + (decrementar.y - position.y) * 0.1
-   // const x = decrementar.x
-  //  const y = decrementar.y
 
     
     setPosition({ x, y })
@@ -113,6 +100,7 @@ useEffect(
        setWinner(false)
        setPantalla("you win")
 
+
     }
     if(enable==false){
        setPantalla("")
@@ -139,7 +127,8 @@ useEffect(
     <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
-     </div>
+     {pantalla === "you win" && <ConfettiBoom mode="boom" />}
+    </div>
     </>
   )
 }
