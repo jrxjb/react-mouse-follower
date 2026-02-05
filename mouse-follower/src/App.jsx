@@ -123,7 +123,7 @@ useEffect(
   return (
     <>
     <div className='class-app'>
-    <TextP   style={{position:"absolute", top:'0%', left:"calc(50% - 75px)"}}/>
+    <TextP   style={{position:"absolute", top:'0%', left:"calc(80%)"}}/>
     <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
