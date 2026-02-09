@@ -84,6 +84,7 @@ useEffect(
   ()=>{
     if((timer>=15)&(enable)){
       setEnable(false)
+      setPantalla("Loss")
     }
   }
   ,[timer])
@@ -111,9 +112,16 @@ useEffect(
     };
  
     const clickToLoss=()=>{
+      if(pantalla==="Loss"){
+        setPantalla("")
+        setRandomPosition({x:width/2,y:height/2})
+        setPosition({x:(width*0.001),y:(height*0.001)})
+        setTimer(0)
+      }else{
       setEnable(false)
       setPantalla("Loss")
       setRandomPosition({x:width/2,y:height/2})
+      }
 
     }
 
