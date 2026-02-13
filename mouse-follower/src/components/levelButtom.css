@@ -9,6 +9,28 @@
     background-color:blueviolet;
     border:solid 1px white;
     border-radius:20%;
+    user-select:none;
+}
 
+.level-buttom-active{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
+    width: 60px;
+    height: 40px;
+    
+    background-color: rgb(255, 160, 122);
+    color: antiquewhite;
+    border:solid 1px white;
+    border-radius:20%;
+    user-select: none;
+}
+
+.level-buttom:hover{
+    
+    background-color: rgb(255, 160, 122);
+    color: antiquewhite;
+    cursor: pointer;
+    user-select: none;
 }

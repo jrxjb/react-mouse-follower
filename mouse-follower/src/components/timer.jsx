@@ -8,8 +8,8 @@ const TimerP =({timer,style,text})=>{
 
     return( 
     <div className='timerP' style={style} > 
-      {timer}s time 
-        <div>{text}</div>
+        <div className="text">{timer}s time </div>
+        <div className="text">{text}</div>
     </div>
     )
 }

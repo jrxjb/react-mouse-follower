@@ -19,9 +19,10 @@ function App() {
     const [winner, setWinner] = useState(false)
     const [randomPosition,setRandomPosition] = useState({x:width/2,y:height/2})
     const [decrementar,setDecrementar] = useState({x:0,y:0})
-    const [pantalla,setPantalla] = useState("")
+    const [pantalla,setPantalla] = useState("Choose a level")
     const [timer,setTimer] = useState(0)
     const [levelG,setLevelG] = useState(0)
+
 
 
     useEffect(
@@ -87,7 +88,7 @@ useEffect(
   ()=>{
     if((timer>=15)&(enable)){
       setEnable(false)
-      setPantalla("Loss")
+      setPantalla("You have loss!")
     }
   }
   ,[timer])
@@ -98,6 +99,7 @@ useEffect(
     return Math.floor(Math.random() * max);
 }
     const muestra = ()=>{
+      if(levelG==0)return;
       setEnable(!enable);
       if(winner==true&&enable==true){
        setEnable(false)
@@ -115,20 +117,21 @@ useEffect(
     };
  
     const clickToLoss=()=>{
-      if(pantalla==="Loss"){
+      if(pantalla==="You have loss!"){
         setPantalla("")
         setRandomPosition({x:width/2,y:height/2})
         setPosition({x:(width*0.001),y:(height*0.001)})
         setTimer(0)
       }else{
       setEnable(false)
-      setPantalla("You loss")
+      setPantalla("You have loss!")
       setRandomPosition({x:width/2,y:height/2})
       }
 
     }
     const Level1 = ()=>{
       setLevelG(2500)
+      setSelectButtom(true)
     }
     const Level2 = ()=>{
       setLevelG(1800)
@@ -148,9 +151,11 @@ useEffect(
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor key={pantalla} clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      {pantalla === "you win" && <ConfettiBoom mode="boom" />}
-     <LevelButtom selecLevel={Level1} textLevel='Level 1'/>
-     <LevelButtom selecLevel={Level2} textLevel='Level 2'/>
-     <LevelButtom selecLevel={Level3} textLevel='Level 3'/>
+     <section style={{position:"absolute", top:"calc(0% + 230px)",left:"95%"}}>
+     <LevelButtom selectButtom={levelG==2500} selecLevel={Level1} textLevel='Level 1'/>
+     <LevelButtom selectButtom={levelG==1800} selecLevel={Level2} textLevel='Level 2'/>
+     <LevelButtom selectButtom={levelG==1200} selecLevel={Level3} textLevel='Level 3'/>
+     </section>
     </div>
     </>
   )
