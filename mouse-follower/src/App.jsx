@@ -87,6 +87,7 @@ useEffect(
   ()=>{
     if((timer>=15)&(enable)){
       setEnable(false)
+      setPantalla("Loss")
     }
   }
   ,[timer])
@@ -114,9 +115,16 @@ useEffect(
     };
  
     const clickToLoss=()=>{
+      if(pantalla==="Loss"){
+        setPantalla("")
+        setRandomPosition({x:width/2,y:height/2})
+        setPosition({x:(width*0.001),y:(height*0.001)})
+        setTimer(0)
+      }else{
       setEnable(false)
       setPantalla("You loss")
       setRandomPosition({x:width/2,y:height/2})
+      }
 
     }
     const Level1 = ()=>{
@@ -138,7 +146,7 @@ useEffect(
     <TextP   style={{position:"absolute", top:'0%', left:"calc(80%)"}}/>
     <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
-    <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
+    <CirculoSeguidor key={pantalla} clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      {pantalla === "you win" && <ConfettiBoom mode="boom" />}
      <LevelButtom selecLevel={Level1} textLevel='Level 1'/>
      <LevelButtom selecLevel={Level2} textLevel='Level 2'/>
