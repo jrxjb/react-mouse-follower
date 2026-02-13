@@ -6,6 +6,7 @@ import ButtonRadom from './components/button.jsx'
 import TimerP from './components/timer.jsx'
 import TextP from './components/textoPantalla.jsx'
 import ConfettiBoom from "react-confetti-boom";
+import LevelButtom from './components/levelButtom.jsx'
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
     const [decrementar,setDecrementar] = useState({x:0,y:0})
     const [pantalla,setPantalla] = useState("")
     const [timer,setTimer] = useState(0)
+    const [levelG,setLevelG] = useState(0)
+
 
     useEffect(
     ()=>{
@@ -31,7 +34,7 @@ function App() {
       
     //setEnable(clientX) 
         setWinner(true)
-        setPantalla("jugando")
+        setPantalla("playing")
 
 
       }
@@ -72,7 +75,7 @@ useEffect(
   ()=>{
     if(enable){
     const timerV = setInterval(()=>{
-      setTimer((prev)=>prev+1)},1200)
+      setTimer((prev)=>prev+1)},levelG)
 
     return () => clearInterval(timerV);
         }}, 
@@ -112,9 +115,18 @@ useEffect(
  
     const clickToLoss=()=>{
       setEnable(false)
-      setPantalla("Loss")
+      setPantalla("You loss")
       setRandomPosition({x:width/2,y:height/2})
 
+    }
+    const Level1 = ()=>{
+      setLevelG(2500)
+    }
+    const Level2 = ()=>{
+      setLevelG(1800)
+    }
+    const Level3 = ()=>{
+      setLevelG(1200)
     }
 
   
@@ -128,6 +140,9 @@ useEffect(
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      {pantalla === "you win" && <ConfettiBoom mode="boom" />}
+     <LevelButtom selecLevel={Level1} textLevel='Level 1'/>
+     <LevelButtom selecLevel={Level2} textLevel='Level 2'/>
+     <LevelButtom selecLevel={Level3} textLevel='Level 3'/>
     </div>
     </>
   )
