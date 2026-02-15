@@ -23,6 +23,7 @@ function App() {
     const [timer,setTimer] = useState(0)
     const [levelG,setLevelG] = useState(0)
     const [timeToWin,setTimeToWin] = useState(0)
+    const [speet,setSpeet]= useState(0)
 
 
 
@@ -61,11 +62,13 @@ function App() {
     }
   },[enable,randomPosition])
 // useEffect circulos decrementar 
-
+// hard 0.115
+//medium 0.09
+//easy 0.07
 useEffect(() => {
   if (enable) {
-    const x = position.x + (decrementar.x - position.x) * 0.1
-    const y = position.y + (decrementar.y - position.y) * 0.1
+    const x = position.x + (decrementar.x - position.x) * speet
+    const y = position.y + (decrementar.y - position.y) * speet
 
     
     setPosition({ x, y })
@@ -133,15 +136,27 @@ useEffect(
     const Level1 = ()=>{
       setLevelG(3000)
       setTimeToWin(30)
+      setSpeet(0.07)
+      setRandomPosition({x:width/2,y:height/2})
+      setPosition({x:(width*0.001),y:(height*0.001)})
+      setTimer(0)
     
     }
     const Level2 = ()=>{
       setLevelG(2000)
       setTimeToWin(20)
+      setSpeet(0.09)
+      setRandomPosition({x:width/2,y:height/2})
+      setPosition({x:(width*0.001),y:(height*0.001)})
+      setTimer(0)
     }
     const Level3 = ()=>{
       setLevelG(1000)
       setTimeToWin(10)
+      setSpeet(0.115)
+      setRandomPosition({x:width/2,y:height/2})
+      setPosition({x:(width*0.001),y:(height*0.001)})
+      setTimer(0)
     }
 
   
@@ -150,8 +165,8 @@ useEffect(
   return (
     <>
     <div className='class-app'>
-    <TextP   style={{position:"absolute", top:'0%', left:"80%"}}/>
-    <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
+    <TextP   style={{position:"absolute", top:'0%', left:"78%"}}/>
+    <TimerP text={pantalla} timeToWin={timeToWin}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor key={pantalla} clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      {pantalla === "you win" && <ConfettiBoom mode="boom" />}
