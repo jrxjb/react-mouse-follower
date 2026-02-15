@@ -1,9 +1,10 @@
 .texpPS{
     display:flex;
     flex-direction:column;
+    font-size:17px;
     background-color:rgb(223, 116, 90);
     height:180px;
-    width:250px;
+    width:280px;
     
     border:white solid 2px;
     border-radius:20%;
@@ -11,13 +12,8 @@
      padding:10px;
      margin: 5px;
      user-select:none;
-}
-
-
-.text{
-     font-size:18px;
+         
      justify-content:center;
      align-items:center;
-     text-align: center;
-     user-select:none;
+
 }

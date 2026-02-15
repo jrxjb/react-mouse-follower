@@ -22,6 +22,7 @@ function App() {
     const [pantalla,setPantalla] = useState("Choose a level")
     const [timer,setTimer] = useState(0)
     const [levelG,setLevelG] = useState(0)
+    const [timeToWin,setTimeToWin] = useState(0)
 
 
 
@@ -55,7 +56,7 @@ function App() {
       if(enable==true){
       const interval = setInterval(()=>{
         setRandomPosition({x:getRandomInt(width),y:getRandomInt(height)})}
-        , getRandomInt(1000));
+        , getRandomInt(levelG));
     return ()=>clearInterval(interval)
     }
   },[enable,randomPosition])
@@ -76,7 +77,7 @@ useEffect(
   ()=>{
     if(enable){
     const timerV = setInterval(()=>{
-      setTimer((prev)=>prev+1)},levelG)
+      setTimer((prev)=>prev+1)},1000)
 
     return () => clearInterval(timerV);
         }}, 
@@ -86,7 +87,7 @@ useEffect(
 
 useEffect(
   ()=>{
-    if((timer>=15)&(enable)){
+    if((timer>=timeToWin)&(enable)){
       setEnable(false)
       setPantalla("You have loss!")
     }
@@ -130,14 +131,17 @@ useEffect(
 
     }
     const Level1 = ()=>{
-      setLevelG(2500)
-      setSelectButtom(true)
+      setLevelG(3000)
+      setTimeToWin(30)
+    
     }
     const Level2 = ()=>{
-      setLevelG(1800)
+      setLevelG(2000)
+      setTimeToWin(20)
     }
     const Level3 = ()=>{
-      setLevelG(1200)
+      setLevelG(1000)
+      setTimeToWin(10)
     }
 
   
@@ -146,15 +150,15 @@ useEffect(
   return (
     <>
     <div className='class-app'>
-    <TextP   style={{position:"absolute", top:'0%', left:"calc(80%)"}}/>
+    <TextP   style={{position:"absolute", top:'0%', left:"80%"}}/>
     <TimerP text={pantalla}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
     <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
     <CirculoSeguidor key={pantalla} clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      {pantalla === "you win" && <ConfettiBoom mode="boom" />}
      <section style={{position:"absolute", top:"calc(0% + 230px)",left:"95%"}}>
-     <LevelButtom selectButtom={levelG==2500} selecLevel={Level1} textLevel='Level 1'/>
-     <LevelButtom selectButtom={levelG==1800} selecLevel={Level2} textLevel='Level 2'/>
-     <LevelButtom selectButtom={levelG==1200} selecLevel={Level3} textLevel='Level 3'/>
+     <LevelButtom selectButtom={levelG==3000} selecLevel={Level1} textLevel='Level 1'/>
+     <LevelButtom selectButtom={levelG==2000} selecLevel={Level2} textLevel='Level 2'/>
+     <LevelButtom selectButtom={levelG==1000} selecLevel={Level3} textLevel='Level 3'/>
      </section>
     </div>
     </>

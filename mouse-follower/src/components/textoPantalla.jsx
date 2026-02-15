@@ -2,7 +2,7 @@ import './textP.css'
 
 
 
-const TextP =({style,text})=>{
+const TextP =({style})=>{
 
     return( 
     <div className='texpPS' style={style} > 
