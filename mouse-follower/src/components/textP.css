@@ -1,7 +1,7 @@
 .texpPS{
     display:flex;
     flex-direction:column;
-    background-color:rgb(223, 116, 90);
+    background-color:#3a2a1e;
     height:180px;
     width:250px;
     
@@ -11,6 +11,7 @@
      padding:10px;
      margin: 5px;
      user-select:none;
+     color: #a59f8a;
 }
 
 

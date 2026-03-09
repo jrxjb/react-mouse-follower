@@ -23,14 +23,19 @@ function CirculoSeguidor({style,clickToLossProps}){
                 <div className='arm-left'>
                     <div className='arm-left-body'></div>
                 </div>
+              
             </div> 
 
-            <div className='legs'>
-                <div className='leg-left'>
-                    <div className='short-left'></div>
-                </div>
-                <div className='leg-right'>
-                    <div className='short-right'></div>
+            <div className='pants'>
+                <div className='short'></div>
+                <div className='legs'>
+                    
+                    <div className='leg-left'>
+                        <div className='short-left'></div>
+                    </div>
+                    <div className='leg-right'>
+                        <div className='short-right'></div>
+                    </div>
                 </div>
             </div>
         </div>
