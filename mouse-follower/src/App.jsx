@@ -105,7 +105,7 @@ useEffect(
     const muestra = ()=>{
       if(levelG==0)return;
       setEnable(!enable);
-      if(winner==true&&enable==true){
+      if(winner==true&&enable==true&&timer>=1){
        setEnable(false)
        setWinner(false)
        setPantalla("you win")
