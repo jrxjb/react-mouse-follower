@@ -1,4 +1,4 @@
-import './button.css'
+import './potion.css'
 
 function ButtonRadom({enable,muestraV,style}){
     

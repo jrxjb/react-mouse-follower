@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
-import CirculoSeguidor from './components/circulo.jsx'
+import CirculoSeguidor from './components/monster.jsx'
 import ButtonRadom from './components/potion.jsx'
 import TimerP from './components/timer.jsx'
 import TextP from './components/textoPantalla.jsx'

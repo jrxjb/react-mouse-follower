@@ -1,4 +1,4 @@
-import './circulo.css'
+import './monster.css'
 
 function CirculoSeguidor({style,clickToLossProps}){
     return(
