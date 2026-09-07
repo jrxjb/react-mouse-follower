@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
 import CirculoSeguidor from './components/circulo.jsx'
-import ButtonRadom from './components/button.jsx'
+import ButtonRadom from './components/potion.jsx'
 import TimerP from './components/timer.jsx'
 import TextP from './components/textoPantalla.jsx'
 import ConfettiBoom from "react-confetti-boom";
