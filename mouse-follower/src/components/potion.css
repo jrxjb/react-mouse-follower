@@ -1,9 +1,10 @@
 .potion-closed{
   position: absolute; 
-   top: 0;
-   left: 0;
-   width: 45px;
-   height: 30px;
+  top: 0;
+  left: 0;
+  width: 45px;
+  height: 30px;
+  pointer-events: none;  
 }
 
 .potion-top{
@@ -75,4 +76,10 @@
  transform: translate(-50%, 20%);
  border-radius: 0% 0% 50% 50%;
  
+}
+
+.potion-top,
+.potion-middle,
+.potion-body {
+  pointer-events: auto;          
 }

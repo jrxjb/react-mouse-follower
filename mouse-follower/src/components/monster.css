@@ -10,7 +10,12 @@
     z-index: 1;
 
 
+
 }
+
+
+
+
 .head{
     position:absolute;
     border:solid;
@@ -204,4 +209,26 @@ left: 34%;
     transform:translate(-10%,0%);
 
 
+}
+
+
+.npc,
+.ojos,
+.boca,
+.torso,
+.pants,
+.legs {
+  pointer-events: none;
+}
+
+.head,
+.body,
+.arm-righ,
+.arm-left,
+.leg-left,
+.leg-right,
+.short,
+.short-left,
+.short-right {
+  pointer-events: auto;
 }
