@@ -10,7 +10,7 @@ function CirculoSeguidor({style,clickToLossProps}){
                     <div className='ojo2'></div>
                 </div>
                 <div className='boca'>
-                    <div className='dientes'></div>
+                    <div className='lengua'></div>
                 </div>
             </div>
             <div className='torso'>

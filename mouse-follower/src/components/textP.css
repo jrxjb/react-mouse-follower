@@ -12,13 +12,14 @@
      margin: 5px;
      user-select:none;
      color: #a59f8a;
+     
 }
 
 
 .text{
-     font-size:18px;
+     font-size:16px;
      justify-content:center;
      align-items:center;
      margin: 5px;
-
+     overflow: hidden;
 }

@@ -1,11 +1,11 @@
 import './potion.css'
 
 function ButtonRadom({enable,muestraV,style}){
-    
+    // {enable} 
     return(
         <>
          <div className='potion-closed' onClick={muestraV}  style={style}>
-             {enable} 
+            
              <div>
                 <div className='potion-top'>
                 </div>

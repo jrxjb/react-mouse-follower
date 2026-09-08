@@ -1,9 +1,8 @@
 html, body {
-  width: 720px;
-  height: 500px;
+  width: 100vw;
+  height: 100vh;
   margin: 0 auto;  
-  background: #1a241a; /* Color base oscuro */
-  background-image: 
-  radial-gradient(circle at 30% 40%, rgba(70, 100, 70, 0.2) 0%, transparent 40%),
-  radial-gradient(circle at 70% 80%, rgba(40, 30, 20, 0.3) 0%, transparent 50%);
+   background: #121712;
+
+
 }
