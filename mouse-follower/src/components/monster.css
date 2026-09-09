@@ -8,9 +8,6 @@
     justify-content:flex-start;
     gap: 0;
     z-index: 1;
-
-
-
 }
 
 .npc{
@@ -73,11 +70,24 @@ width:16%;
 aspect-ratio: 1 / 1;
 border-radius:30%;
 background-color:black;
-
 box-shadow: 0 3px 1px 0px rgba(0,0,0,0.4);
-animation: blink 2s infinite
-
+animation: blink 2s infinite;
+position: relative;
 }
+
+
+.ojo1::after{
+  content:'';
+  background:rgba(255,255,255,0.65);
+ width: 35%;
+ height: 35%;
+ top: 15%;
+ left: 20%;
+ position: absolute;
+ border-radius: 50%;
+ 
+}
+
 .ojo2{
 width:16%;
 border-radius:30%;
@@ -86,7 +96,19 @@ background-color:black;
 
 box-shadow: 0 3px 1px 0px rgba(0,0,0,0.4);
 animation: blink 2s infinite;
+position: relative;
+}
 
+.ojo2::after{
+content:'';
+background:rgba(255,255,255,0.65);
+width: 35%;
+height: 35%;
+top: 15%;
+left: 20%;
+position: absolute;
+border-radius: 50%;
+ 
 }
 
 @keyframes blink {
@@ -277,4 +299,5 @@ left: 34%;
 .short-right {
   pointer-events: auto;
 }
+
 
