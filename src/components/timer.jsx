@@ -2,7 +2,7 @@ import './timer.css'
 //{transform:`translate(${width/2}px,${height/2}px)`}
 
 
-const TimerP =({timer,style,text,timeToWin})=>{
+const TimerPanel =({timer,style,text,timeToWin})=>{
     const width = window.innerWidth 
     const height = window.innerHeight
 
@@ -14,4 +14,4 @@ const TimerP =({timer,style,text,timeToWin})=>{
     )
 }
 
-export default TimerP 
+export default TimerPanel

@@ -1,6 +1,6 @@
 import './potion.css'
 
-function ButtonRadom({enable,muestraV,style}){
+function PotionButton({enable,muestraV,style}){
     // {enable} 
     return(
         <>
@@ -25,4 +25,4 @@ function ButtonRadom({enable,muestraV,style}){
     )
 };
 
-export default ButtonRadom
+export default PotionButton

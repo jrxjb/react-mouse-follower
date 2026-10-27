@@ -1,5 +1,5 @@
-import './levelButtom.css'
-const LevelButtom = ({textLevel,selecLevel,selectButtom})=>{
+import './levelButton.css'
+const LevelButton = ({textLevel,selecLevel,selectButtom})=>{
     return (
 <>
 <div className={selectButtom==true? "level-buttom-active":"level-buttom"} onClick={selecLevel}> {textLevel}</div>
@@ -8,4 +8,4 @@ const LevelButtom = ({textLevel,selecLevel,selectButtom})=>{
     )
 }
 
-export default LevelButtom 
+export default LevelButton

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import { useEffect } from 'react'
-import CirculoSeguidor from './components/monster.jsx'
-import ButtonRadom from './components/potion.jsx'
-import TimerP from './components/timer.jsx'
-import TextP from './components/textoPantalla.jsx'
+import Monster from './components/monster.jsx'
+import PotionButton from './components/potion.jsx'
+import TimerPanel from './components/timer.jsx'
+import RulesPanel from './components/rulesPanel.jsx'
 import ConfettiBoom from "react-confetti-boom";
-import LevelButtom from './components/levelButtom.jsx'
+import LevelButton from './components/levelButton.jsx'
+
 
 
 function App() {
@@ -165,15 +166,15 @@ useEffect(
   return (
     <>
     <div className='class-app'>
-    <TextP   style={{position:"absolute", top:'0%', left:"78%"}}/>
-    <TimerP text={pantalla} timeToWin={timeToWin}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
-    <ButtonRadom enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
-    <CirculoSeguidor key={pantalla} clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
+    <RulesPanel  style={{position:"absolute", top:'0%', left:"78%"}}/>
+    <TimerPanel  text={pantalla} timeToWin={timeToWin}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
+    <PotionButton  enable={enable} muestraV={muestra} style={{transform:`translate(${randomPosition.x}px,${randomPosition.y}px)`}}/>
+    <Monster key={pantalla} clickToLossProps={clickToLoss} style={{left: `${position.x-75-5}px`, top: `${position.y-75-5}px` }} />    
      {pantalla === "you win" && <ConfettiBoom mode="boom" />}
      <section style={{position:"absolute", top:"calc(0% + 230px)",left:"95%"}}>
-     <LevelButtom selectButtom={levelG==3000} selecLevel={Level1} textLevel='Level 1'/>
-     <LevelButtom selectButtom={levelG==2000} selecLevel={Level2} textLevel='Level 2'/>
-     <LevelButtom selectButtom={levelG==1000} selecLevel={Level3} textLevel='Level 3'/>
+     <LevelButton selectButtom={levelG==3000} selecLevel={Level1} textLevel='Level 1'/>
+     <LevelButton selectButtom={levelG==2000} selecLevel={Level2} textLevel='Level 2'/>
+     <LevelButton selectButtom={levelG==1000} selecLevel={Level3} textLevel='Level 3'/>
      </section>
     </div>
     </>

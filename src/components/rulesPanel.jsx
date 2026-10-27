@@ -1,8 +1,8 @@
-import './textP.css'
+import './rulesPanel.css'
 
 
 
-const TextP =({style})=>{
+const RulesPanel  =({style})=>{
 
     return( 
     <div className='texpPS' style={style} > 
@@ -17,4 +17,4 @@ const TextP =({style})=>{
     )
 }
 
-export default TextP
+export default RulesPanel 

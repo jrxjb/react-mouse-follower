@@ -1,6 +1,6 @@
 import './monster.css'
 
-function CirculoSeguidor({style,clickToLossProps}){
+function Monster({style,clickToLossProps}){
     return(
     
         <div className='npc' style={style} onClick={clickToLossProps} >
@@ -42,5 +42,5 @@ function CirculoSeguidor({style,clickToLossProps}){
     )
 }
 
-export default CirculoSeguidor
+export default Monster
 
