@@ -1,10 +1,9 @@
 import './potion.css'
 
-function PotionButton({enable,muestraV,style}){
-    // {enable} 
+function PotionButton({onToggle,style}){
     return(
         <>
-         <div className='potion-closed' onClick={muestraV}  style={style}>
+         <div className='potion-closed' onClick={onToggle}  style={style}>
             
              <div>
                 <div className='potion-top'>

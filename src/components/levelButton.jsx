@@ -1,8 +1,8 @@
 import './levelButton.css'
-const LevelButton = ({textLevel,selecLevel,selectButtom})=>{
+const LevelButton = ({textLevel,onSelect,selectButton})=>{
     return (
 <>
-<div className={selectButtom==true? "level-buttom-active":"level-buttom"} onClick={selecLevel}> {textLevel}</div>
+<div className={selectButton==true? "level-buttom-active":"level-buttom"} onClick={onSelect}> {textLevel}</div>
 </>
 
     )

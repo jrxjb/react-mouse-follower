@@ -1,9 +1,9 @@
 import './monster.css'
 
-function Monster({style,clickToLossProps}){
+function Monster({style,onClick}){
     return(
     
-        <div className='npc' style={style} onClick={clickToLossProps} >
+        <div className='npc' style={style} onClick={onClick} >
             <div className='head'>
                 <div className='ojos'>
                     <div className='ojo1'></div>
