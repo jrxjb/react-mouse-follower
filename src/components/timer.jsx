@@ -7,7 +7,7 @@ const TimerPanel =({timer,style,text,timeLimit})=>{
     const height = window.innerHeight
 
     return( 
-    <div className='timerP' style={style} > 
+    <div className='timer-panel' style={style} > 
         <div className="text">Time: {timer}s / {timeLimit}s </div>
         <div className="text">{text}</div>
     </div>

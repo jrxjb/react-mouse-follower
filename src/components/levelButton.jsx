@@ -2,7 +2,7 @@ import './levelButton.css'
 const LevelButton = ({textLevel,onSelect,selectButton})=>{
     return (
 <>
-<div className={selectButton==true? "level-buttom-active":"level-buttom"} onClick={onSelect}> {textLevel}</div>
+<div className={selectButton==true? "level-button-active":"level-button"} onClick={onSelect}> {textLevel}</div>
 </>
 
     )

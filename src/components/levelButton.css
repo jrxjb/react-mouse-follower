@@ -1,4 +1,4 @@
-.level-buttom{
+.level-button{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -13,7 +13,7 @@
     z-index: 2;
 }
 
-.level-buttom-active{
+.level-button-active{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -29,7 +29,7 @@
     z-index: 2;
 }
 
-.level-buttom:hover{
+.level-button:hover{
     
     background-color: #d97c2b;
     color: antiquewhite;

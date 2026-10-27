@@ -62,7 +62,7 @@ function App() {
     return ()=>clearInterval(interval)
     }
   },[isPlaying,potionPosition])
-// useEffect circulos decrementar 
+// useEffect:// monster follows the pointer (easing) 
 // hard 0.115
 //medium 0.09
 //easy 0.07
@@ -103,7 +103,7 @@ useEffect(
     function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-    const muestra = ()=>{
+    const togglePotion = ()=>{
       if(spawnDelay==0)return;
       setIsPlaying(!isPlaying);
       if(winner==true&&isPlaying==true&&timer>=1){
@@ -165,10 +165,10 @@ useEffect(
 
   return (
     <>
-    <div className='class-app'>
+    <div className='app'>
     <RulesPanel  style={{position:"absolute", top:'0%', left:"78%"}}/>
     <TimerPanel  text={status} timeLimit={timeLimit}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
-    <PotionButton  onToggle={muestra} style={{transform:`translate(${potionPosition.x}px,${potionPosition.y}px)`}}/>
+    <PotionButton onToggle={togglePotion} style={{transform:`translate(${potionPosition.x}px,${potionPosition.y}px)`}}/>
     <Monster key={status} onClick={clickToLoss} style={{left: `${monsterPosition.x-75-5}px`, top: `${monsterPosition.y-75-5}px` }} />    
      {status === "You win"  && <ConfettiBoom mode="boom" />}
      <section style={{position:"absolute", top:"calc(0% + 230px)",left:"95%"}}>

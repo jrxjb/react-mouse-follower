@@ -5,17 +5,17 @@ function Monster({style,onClick}){
     
         <div className='npc' style={style} onClick={onClick} >
             <div className='head'>
-                <div className='ojos'>
-                    <div className='ojo1'></div>
-                    <div className='ojo2'></div>
+                <div className='eyes'>
+                    <div className='eye-left'></div>
+                    <div className='eye-right'></div>
                 </div>
-                <div className='boca'>
-                    <div className='lengua'></div>
+                <div className='mouth'>
+                    <div className='tongue'></div>
                 </div>
             </div>
             <div className='torso'>
-                    <div className='arm-righ'>  
-                        <div className='arm-righ-body'></div>
+                    <div className='arm-right'>  
+                        <div className='arm-right-body'></div>
                      </div>
                 <div className='body'>
                 </div>

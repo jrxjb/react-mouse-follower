@@ -5,7 +5,7 @@ import './rulesPanel.css'
 const RulesPanel  =({style})=>{
 
     return( 
-    <div className='texpPS' style={style} > 
+    <div className='rules-panel' style={style} > 
         <p>Rules</p>
         <ul>
         <li>Reach the potion before time runs out </li>
