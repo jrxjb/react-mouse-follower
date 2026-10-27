@@ -8,7 +8,7 @@ const TimerPanel =({timer,style,text,timeToWin})=>{
 
     return( 
     <div className='timerP' style={style} > 
-        <div className="text">{timer}s time /{timeToWin}s </div>
+        <div className="text">Time: {timer}s / {timeToWin}s </div>
         <div className="text">{text}</div>
     </div>
     )

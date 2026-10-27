@@ -8,13 +8,14 @@ const RulesPanel  =({style})=>{
     <div className='texpPS' style={style} > 
         <p>Rules</p>
         <ul>
-        <li>You need to win until the time finish </li>
-        <li>You need to click the bottle to win</li>
-        <li>You can't click the mounster</li>
-        <li>To reset the game, click the bottle  or the mounster</li>
+        <li>Reach the potion before time runs out </li>
+        <li>Click the potion to win</li>
+        <li>Don't click the monster</li>
+        <li>Click the potion or the monster to reset</li>
         </ul>
     </div>
     )
 }
 
 export default RulesPanel 
+
