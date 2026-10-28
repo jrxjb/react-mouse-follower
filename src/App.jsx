@@ -23,6 +23,7 @@ function App() {
     const [status,setStatus] = useState("Choose a level")
     const [timer,setTimer] = useState(0)
     const [spawnDelay,setSpawnDelay] = useState(0)
+    const [minSpawnDelay,setMinSpawnDelay] = useState(0)
     const [timeLimit,setTimeLimit] = useState(0)
     const [speed,setSpeed]= useState(0)
 
@@ -57,11 +58,11 @@ function App() {
     useEffect(()=>{
       if(isPlaying==true){
       const interval = setInterval(()=>{
-        setPotionPosition({x:getRandomInt(width),y:getRandomInt(height)})}
-        , getRandomInt(spawnDelay));
+        setPotionPosition({x:getRandomInt(0,width-45),y:getRandomInt(0,height-30)})}
+        , getRandomInt(minSpawnDelay,spawnDelay));
     return ()=>clearInterval(interval)
     }
-  },[isPlaying,potionPosition])
+  },[isPlaying, spawnDelay, minSpawnDelay,potionPosition])
 // useEffect:// monster follows the pointer (easing) 
 // hard 0.115
 //medium 0.09
@@ -100,9 +101,10 @@ useEffect(
 
 
 
-    function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+  function getRandomInt(min,max) {
+     return min + Math.floor(Math.random() * (max - min + 1))
 }
+
     const togglePotion = ()=>{
       if(spawnDelay==0)return;
       setIsPlaying(!isPlaying);
@@ -136,6 +138,7 @@ useEffect(
     }
     const Level1 = ()=>{
       setSpawnDelay(3000)
+      setMinSpawnDelay(1000)
       setTimeLimit(30)
       setSpeed(0.07)
       setPotionPosition({x:width/2,y:height/2})
@@ -145,6 +148,7 @@ useEffect(
     }
     const Level2 = ()=>{
       setSpawnDelay(2000)
+      setMinSpawnDelay(800)
       setTimeLimit(20)
       setSpeed(0.09)
       setPotionPosition({x:width/2,y:height/2})
@@ -153,6 +157,7 @@ useEffect(
     }
     const Level3 = ()=>{
       setSpawnDelay(1000)
+      setMinSpawnDelay(300)
       setTimeLimit(10)
       setSpeed(0.115)
       setPotionPosition({x:width/2,y:height/2})
