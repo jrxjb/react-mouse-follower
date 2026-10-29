@@ -1,10 +1,6 @@
 import './timer.css'
-//{transform:`translate(${width/2}px,${height/2}px)`}
-
 
 const TimerPanel =({timer,style,text,timeLimit})=>{
-    const width = window.innerWidth 
-    const height = window.innerHeight
 
     return( 
     <div className='timer-panel' style={style} > 

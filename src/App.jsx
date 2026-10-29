@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import { useEffect } from 'react'
 import Monster from './components/monster.jsx'
 import PotionButton from './components/potion.jsx'
 import TimerPanel from './components/timer.jsx'
@@ -9,6 +8,9 @@ import ConfettiBoom from "react-confetti-boom";
 import LevelButton from './components/levelButton.jsx'
 
 
+function getRandomInt(min, max) {
+  return min + Math.floor(Math.random() * (max - min + 1))
+}
 
 function App() {
   
@@ -26,27 +28,31 @@ function App() {
     const [minSpawnDelay,setMinSpawnDelay] = useState(0)
     const [timeLimit,setTimeLimit] = useState(0)
     const [speed,setSpeed]= useState(0)
-
+    const pointerFrameRef = useRef(0)
 
 
     useEffect(
     ()=>{
 
       if(isPlaying==true){
-    const pointerMove = (event)=>{
-    const {clientX,clientY} = event
-    setPointer({ x: clientX, y: clientY })
-      
-    //setIsPlaying(clientX) 
-        setWinner(true)
-        setStatus("playing")
-
-
-      }
+const pointerMove = (event) => {
+  const { clientX, clientY } = event
+  cancelAnimationFrame(pointerFrameRef.current)
+  pointerFrameRef.current = requestAnimationFrame(() => {
+    setPointer(prev =>
+      prev.x === clientX && prev.y === clientY ? prev : { x: clientX, y: clientY }
+    )
+    setWinner(true)
+    setStatus("playing")
+  })
+}
 
 
           window.addEventListener('pointermove',pointerMove)
-         return ()=>{window.removeEventListener('pointermove', pointerMove)} 
+        return () => {
+  cancelAnimationFrame(pointerFrameRef.current)
+  window.removeEventListener('pointermove', pointerMove)
+}
        
       }
     }
@@ -69,13 +75,12 @@ function App() {
 //easy 0.07
 useEffect(() => {
   if (isPlaying) {
-    const x = monsterPosition.x + (pointer.x - monsterPosition.x) * speed
-    const y = monsterPosition.y + (pointer.y - monsterPosition.y) * speed
-
-    
-    setMonsterPosition({ x, y })
+    setMonsterPosition(prev => ({
+      x: prev.x + (pointer.x - prev.x) * speed,
+      y: prev.y + (pointer.y - prev.y) * speed,
+    }))
   }
-}, [ pointer,potionPosition])
+},   [pointer, speed, isPlaying])
 
 // timer 
 useEffect(
@@ -92,18 +97,13 @@ useEffect(
 
 useEffect(
   ()=>{
-    if((timer>=timeLimit)&(isPlaying)){
+    if((timer>=timeLimit)&&(isPlaying)){
       setIsPlaying(false)
       setStatus("You lost!")
     }
   }
-  ,[timer])
+  ,[timer, timeLimit, isPlaying])
 
-
-
-  function getRandomInt(min,max) {
-     return min + Math.floor(Math.random() * (max - min + 1))
-}
 
     const togglePotion = ()=>{
       if(spawnDelay==0)return;
@@ -138,7 +138,7 @@ useEffect(
     }
     const Level1 = ()=>{
       setSpawnDelay(3000)
-      setMinSpawnDelay(1000)
+      setMinSpawnDelay(900)
       setTimeLimit(30)
       setSpeed(0.07)
       setPotionPosition({x:width/2,y:height/2})
@@ -148,7 +148,7 @@ useEffect(
     }
     const Level2 = ()=>{
       setSpawnDelay(2000)
-      setMinSpawnDelay(800)
+      setMinSpawnDelay(450)
       setTimeLimit(20)
       setSpeed(0.09)
       setPotionPosition({x:width/2,y:height/2})
@@ -157,7 +157,7 @@ useEffect(
     }
     const Level3 = ()=>{
       setSpawnDelay(1000)
-      setMinSpawnDelay(300)
+      setMinSpawnDelay(100)
       setTimeLimit(10)
       setSpeed(0.115)
       setPotionPosition({x:width/2,y:height/2})
