@@ -19,7 +19,7 @@ function App() {
 
     const [isPlaying, setIsPlaying] = useState(false)
     const [monsterPosition,setMonsterPosition] = useState({x:(width*0.001),y:(height*0.001)})
-    const [winner, setWinner] = useState(false)
+    const [hasmove, setHasmove] = useState(false)
     const [potionPosition,setPotionPosition] = useState({x:width/2,y:height/2})
     const [pointer, setPointer] = useState({x:0,y:0})
     const [status,setStatus] = useState("Choose a level")
@@ -29,7 +29,6 @@ function App() {
     const [timeLimit,setTimeLimit] = useState(0)
     const [speed,setSpeed]= useState(0)
     const pointerFrameRef = useRef(0)
-
 
     useEffect(
     ()=>{
@@ -42,13 +41,11 @@ const pointerMove = (event) => {
     setPointer(prev =>
       prev.x === clientX && prev.y === clientY ? prev : { x: clientX, y: clientY }
     )
-    setWinner(true)
+    setHasmove(true)
     setStatus("playing")
   })
 }
-
-
-          window.addEventListener('pointermove',pointerMove)
+    window.addEventListener('pointermove',pointerMove)
         return () => {
   cancelAnimationFrame(pointerFrameRef.current)
   window.removeEventListener('pointermove', pointerMove)
@@ -64,7 +61,9 @@ const pointerMove = (event) => {
     useEffect(()=>{
       if(isPlaying==true){
       const interval = setInterval(()=>{
-        setPotionPosition({x:getRandomInt(0,width-45),y:getRandomInt(0,height-30)})}
+        const w = window.innerWidth
+        const h = window.innerHeight
+        setPotionPosition({x:getRandomInt(0,w-45),y:getRandomInt(0,h-30)})}
         , getRandomInt(minSpawnDelay,spawnDelay));
     return ()=>clearInterval(interval)
     }
@@ -73,14 +72,17 @@ const pointerMove = (event) => {
 // hard 0.115
 //medium 0.09
 //easy 0.07
+
 useEffect(() => {
-  if (isPlaying) {
+  if (!isPlaying) return
+  const frame = requestAnimationFrame(() => {
     setMonsterPosition(prev => ({
       x: prev.x + (pointer.x - prev.x) * speed,
       y: prev.y + (pointer.y - prev.y) * speed,
     }))
-  }
-},   [pointer, speed, isPlaying])
+  })
+  return () => cancelAnimationFrame(frame)
+}, [pointer, speed, isPlaying])
 
 // timer 
 useEffect(
@@ -94,34 +96,41 @@ useEffect(
         [isPlaying])
    
 //timer stop
-
 useEffect(
   ()=>{
     if((timer>=timeLimit)&&(isPlaying)){
-      setIsPlaying(false)
-      setStatus("You lost!")
+      const frame = requestAnimationFrame(() => {
+        setIsPlaying(false)
+        setStatus("You lost!")
+  })
+  return () => cancelAnimationFrame(frame)
     }
   }
   ,[timer, timeLimit, isPlaying])
 
 
-    const togglePotion = ()=>{
-      if(spawnDelay==0)return;
-      setIsPlaying(!isPlaying);
-      if(winner==true&&isPlaying==true&&timer>=1){
-       setIsPlaying(false)
-       setWinner(false)
-       setStatus("You win")
+    const togglePotion = () => {
+  if (spawnDelay == 0) return
 
+  if (isPlaying == false) {
+    setIsPlaying(true)
+    setStatus("")
+    setPotionPosition({x: width/2, y: height/2})
+    setMonsterPosition({x: width*0.001, y: height*0.001})
+    setHasmove(false)         
+    setTimer(0)
+    return      
+  }
 
-    }
-    if(isPlaying==false){
-       setStatus("")
-       setPotionPosition({x:width/2,y:height/2})
-       setMonsterPosition({x:(width*0.001),y:(height*0.001)})
-       setTimer(0)
-    }
-    };
+  if (hasmove == true && timer >= 1) {
+    setIsPlaying(false)
+    setStatus("You win")
+  } else if (!hasmove) {
+    setStatus("Gotcha! Move first")    
+  } else {
+    setStatus("Too fast! Wait a second") 
+  }
+}
  
     const clickToLoss=()=>{
       if(status==="You lost!"){
