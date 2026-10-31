@@ -19,7 +19,7 @@ function App() {
 
     const [isPlaying, setIsPlaying] = useState(false)
     const [monsterPosition,setMonsterPosition] = useState({x:(width*0.001),y:(height*0.001)})
-    const [hasmove, setHasmove] = useState(false)
+    const [hasMove, setHasMove] = useState(false)
     const [potionPosition,setPotionPosition] = useState({x:width/2,y:height/2})
     const [pointer, setPointer] = useState({x:0,y:0})
     const [status,setStatus] = useState("Choose a level")
@@ -41,7 +41,7 @@ const pointerMove = (event) => {
     setPointer(prev =>
       prev.x === clientX && prev.y === clientY ? prev : { x: clientX, y: clientY }
     )
-    setHasmove(true)
+    setHasMove(true)
     setStatus("playing")
   })
 }
@@ -117,15 +117,15 @@ useEffect(
     setStatus("")
     setPotionPosition({x: width/2, y: height/2})
     setMonsterPosition({x: width*0.001, y: height*0.001})
-    setHasmove(false)         
+    setHasMove(false)         
     setTimer(0)
     return      
   }
 
-  if (hasmove == true && timer >= 1) {
+  if (hasMove == true && timer >= 1) {
     setIsPlaying(false)
     setStatus("You win")
-  } else if (!hasmove) {
+  } else if (!hasMove) {
     setStatus("Gotcha! Move first")    
   } else {
     setStatus("Too fast! Wait a second") 
