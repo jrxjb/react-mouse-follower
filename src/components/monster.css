@@ -40,9 +40,8 @@
     border-radius:11.87em;
     transform:translate(0%,-20%);
     box-shadow: inset 0.3em 0 rgb(65, 92, 65,0.5);
-    
-
 }
+
 
 
 .head::after{
@@ -56,6 +55,20 @@
   border-radius:45%;
   box-shadow: inset 0px 2px 1.5px rgba(141, 164, 141, 0.971);
 }
+
+.head::before{
+    content: "";
+    position: absolute;
+
+    width: 10px;
+    height: 4px;
+    top: 46%;
+    left: 8%;
+    
+    background:repeating-linear-gradient(90deg,#2a1a10 0px 2px,rgba(210,190,150,0.55) 2px 4px,#322e20 4px 6px, white 6px 8px,#322e20 8px 10px);
+
+    }
+
 .eyes{
     display:flex;
      justify-content:space-around;
@@ -299,5 +312,4 @@ left: 34%;
 .short-right {
   pointer-events: auto;
 }
-
 

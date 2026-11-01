@@ -181,7 +181,12 @@ useEffect(
     <>
     <div className='app'>
     <RulesPanel  style={{position:"absolute", top:'0%', left:"78%"}}/>
-    <TimerPanel  text={status} timeLimit={timeLimit}  style={{position:"absolute", top:'15%', left:'50%',fontSize:'18px',}} timer={timer}/>
+    <TimerPanel  text={status} timeLimit={timeLimit}  style={{
+  position: "absolute",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-40%, -100%) translateY(-24px)"
+}} timer={timer}/>
     <PotionButton onToggle={togglePotion} style={{transform:`translate(${potionPosition.x}px,${potionPosition.y}px)`}}/>
     <Monster key={status} onClick={clickToLoss} style={{left: `${monsterPosition.x-75-5}px`, top: `${monsterPosition.y-75-5}px` }} />    
      {status === "You win"  && <ConfettiBoom mode="boom" />}

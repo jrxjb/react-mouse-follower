@@ -1,18 +1,58 @@
 .rules-panel{
     display:flex;
     flex-direction:column;
-    background-color:#3a2a1e;
     height:200px;
     width:250px;
-    
-    border:white solid 2px;
-    border-radius:20%;
+    padding:14px;
+    margin:5px;
 
-     padding:10px;
-     margin: 5px;
-     user-select:none;
-     color: #a59f8a;
-     
+    color:#c2b08a;
+    font-family:'Courier New', Courier, monospace;
+    border-radius:10px;
+
+    user-select:none;
+
+    transform:rotate(-0.8deg);
+
+    box-shadow:
+      0 0 0 2px rgba(15,10,5,0.95),
+      inset 0 0 20px rgba(45,18,6,0.55),
+      inset 0 0 6px rgba(0,0,0,0.5);
+
+ background:
+      radial-gradient(circle at 12% 18%, #d9d6cd 0 2px, #7c7a72 2.5px 4px, #333 4.5px 5.5px, transparent 6.5px),
+      radial-gradient(circle at 88% 18%, #d9d6cd 0 2px, #7c7a72 2.5px 4px, #333 4.5px 5.5px, transparent 6.5px),
+      radial-gradient(circle at 12% 82%, #d9d6cd 0 2px, #7c7a72 2.5px 4px, #333 4.5px 5.5px, transparent 6.5px),
+      radial-gradient(circle at 88% 82%, #d9d6cd 0 2px, #7c7a72 2.5px 4px, #333 4.5px 5.5px, transparent 6.5px),
+      radial-gradient(circle at 25% 30%, rgba(150,80,35,0.35), transparent 35%),
+      radial-gradient(circle at 78% 68%, rgba(120,60,28,0.4), transparent 42%),
+      radial-gradient(circle at 60% 25%, rgba(160,90,40,0.3), transparent 28%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 7px),
+      #46301e;
 }
 
+.rules-panel p{
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-weight:bold;
+  color:#b4452a;
+  text-shadow:0 1px 0 rgba(0,0,0,0.6);
+  margin:2px 0 6px;
+}
 
+.rules-panel ul{
+  list-style:none;
+  padding:0;
+  margin:4px 0 0;
+  font-size:13px;
+}
+.rules-panel li{
+  margin-bottom:6px;
+  line-height:1.3;
+  text-shadow:0 1px 1px rgba(0,0,0,0.6);
+}
+
+.rules-panel li::before{
+  content:'✕';
+  color:rgba(180,69,42,0.8);
+}

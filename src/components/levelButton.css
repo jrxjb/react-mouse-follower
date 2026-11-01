@@ -2,38 +2,65 @@
     display:flex;
     justify-content:center;
     align-items:center;
-
-    width: 60px;
-    height: 40px;
-    
-    background-color:#c94f4f;
-    border:solid 1px #8b3a3a;
-    border-radius:20%;
+    width:60px;
+    height:40px;
+    box-sizing:border-box;
     user-select:none;
-    z-index: 2;
+    cursor:pointer;
+    z-index:2;
+
+    font-family:'Courier New', Courier, monospace;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    color:#c2b08a;
+    border:1px solid #201c14;
+    border-radius:6px;
+    background:linear-gradient(180deg, #5a4732 0%, #3b2a1a 55%, #241a10 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(220,200,160,0.18),
+      inset 0 -2px 4px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(15,10,5,0.9);
+    transition:color .15s ease, transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.level-button:hover{
+    color:#e0d3ad;
+    background:linear-gradient(180deg, #6b5539 0%, #4a3420 55%, #2a1d11 100%);
+    transform:translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(10, 8, 2, 0.22),
+      inset 0 -2px 4px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(15,10,5,0.9),
+      0 2px 6px rgba(0,0,0,0.5);
 }
 
 .level-button-active{
     display:flex;
     justify-content:center;
     align-items:center;
+    width:60px;
+    height:40px;
+    box-sizing:border-box;
+    user-select:none;
+    cursor:pointer;
+    z-index:2;
 
-    width: 60px;
-    height: 40px;
-    
-    background-color: rgb(255, 160, 122);
-    color: antiquewhite;
-    border:solid 1px white;
-    border-radius:20%;
-    user-select: none;
-    z-index: 2;
-}
+    font-family:'Courier New', Courier, monospace;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
 
-.level-button:hover{
-    
-    background-color: #d97c2b;
-    color: antiquewhite;
-    cursor: pointer;
-    user-select: none;
-    z-index: 2;
+    color:#1a1a10;
+    border:1px solid #5c8a1e;
+    border-radius:6px;
+    background:linear-gradient(180deg, #c6ef6a 0%, #a8d94f 55%, #7ea02a 100%);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.35),
+      inset 0 -2px 4px rgba(0,0,0,0.25),
+      0 0 0 1px rgba(15,10,5,0.9),
+      0 0 10px rgba(140,220,60,0.45);
+    transition:color .15s ease, transform .15s ease, box-shadow .15s ease, background .15s ease;
 }
