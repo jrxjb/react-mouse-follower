@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import {  useEffect, useRef, useState } from 'react'
 import './App.css'
 import Monster from './components/monster.jsx'
 import PotionButton from './components/potion.jsx'
@@ -6,6 +6,16 @@ import TimerPanel from './components/timer.jsx'
 import RulesPanel from './components/rulesPanel.jsx'
 import ConfettiBoom from "react-confetti-boom";
 import LevelButton from './components/levelButton.jsx'
+import {playLoseSound,
+  playButtonSound,
+   playPotionSound,
+    playWinSound,
+    startMusic,
+    setMusicRate,
+    setMuted,  }  from "./audio.js"
+
+import SoundButton from './components/soundButton.jsx'
+
 
 
 function getRandomInt(min, max) {
@@ -14,21 +24,31 @@ function getRandomInt(min, max) {
 
 function App() {
   
-    const width = window.innerWidth 
-    const height = window.innerHeight
+  const width = window.innerWidth 
+  const height = window.innerHeight
 
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [monsterPosition,setMonsterPosition] = useState({x:(width*0.001),y:(height*0.001)})
-    const [hasMove, setHasMove] = useState(false)
-    const [potionPosition,setPotionPosition] = useState({x:width/2,y:height/2})
-    const [pointer, setPointer] = useState({x:0,y:0})
-    const [status,setStatus] = useState("Choose a level")
-    const [timer,setTimer] = useState(0)
-    const [spawnDelay,setSpawnDelay] = useState(0)
-    const [minSpawnDelay,setMinSpawnDelay] = useState(0)
-    const [timeLimit,setTimeLimit] = useState(0)
-    const [speed,setSpeed]= useState(0)
-    const pointerFrameRef = useRef(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [monsterPosition,setMonsterPosition] = useState({x:(width*0.001),y:(height*0.001)})
+  const [hasMove, setHasMove] = useState(false)
+  const [potionPosition,setPotionPosition] = useState({x:width/2,y:height/2})
+  const [pointer, setPointer] = useState({x:0,y:0})
+  const [status,setStatus] = useState("Choose a level")
+  const [timer,setTimer] = useState(0)
+  const [spawnDelay,setSpawnDelay] = useState(0)
+  const [minSpawnDelay,setMinSpawnDelay] = useState(0)
+  const [timeLimit,setTimeLimit] = useState(0)
+  const [speed,setSpeed]= useState(0)
+  const pointerFrameRef = useRef(0)
+  const [isMuted, setIsMuted] = useState(false)
+
+
+const toggleMute = () => {
+  const next = !isMuted
+  setIsMuted(next)   
+  setMuted(next)
+}
+    
+
 
     useEffect(
     ()=>{
@@ -42,7 +62,7 @@ const pointerMove = (event) => {
       prev.x === clientX && prev.y === clientY ? prev : { x: clientX, y: clientY }
     )
     setHasMove(true)
-    setStatus("playing")
+   // setStatus("playing")
   })
 }
     window.addEventListener('pointermove',pointerMove)
@@ -102,6 +122,7 @@ useEffect(
       const frame = requestAnimationFrame(() => {
         setIsPlaying(false)
         setStatus("You lost!")
+        playLoseSound()
   })
   return () => cancelAnimationFrame(frame)
     }
@@ -110,21 +131,24 @@ useEffect(
 
 
     const togglePotion = () => {
+ 
   if (spawnDelay == 0) return
 
   if (isPlaying == false) {
     setIsPlaying(true)
-    setStatus("")
+    setStatus("Playing")
     setPotionPosition({x: width/2, y: height/2})
     setMonsterPosition({x: width*0.001, y: height*0.001})
     setHasMove(false)         
     setTimer(0)
+     playPotionSound()
     return      
   }
 
   if (hasMove == true && timer >= 1) {
     setIsPlaying(false)
     setStatus("You win")
+     playWinSound()
   } else if (!hasMove) {
     setStatus("Gotcha! Move first")    
   } else {
@@ -133,19 +157,24 @@ useEffect(
 }
  
     const clickToLoss=()=>{
-      if(status==="You lost!"){
-        setStatus("")
-        setPotionPosition({x:width/2,y:height/2})
-        setMonsterPosition({x:(width*0.001),y:(height*0.001)})
-        setTimer(0)
-      } else{
-      setIsPlaying(false)
-      setStatus("You lost!")
-      setPotionPosition({x:width/2,y:height/2})
-      }
+  if (!isPlaying) {
+    if (spawnDelay === 0) {
+  setStatus("Choose a level")
+} else {
+  setStatus("")
+}
+    setPotionPosition({ x: width / 2, y: height / 2 })
+    setMonsterPosition({ x: width * 0.001, y: height * 0.001 })
+    setTimer(0)
+    return
+  }
+  setIsPlaying(false)
+  setStatus("You lost!")
+  setPotionPosition({ x: width / 2, y: height / 2 })
+  playLoseSound()
+}
 
-    }
-    const Level1 = ()=>{
+const Level1 = ()=>{
       setSpawnDelay(3000)
       setMinSpawnDelay(900)
       setTimeLimit(30)
@@ -153,6 +182,10 @@ useEffect(
       setPotionPosition({x:width/2,y:height/2})
       setMonsterPosition({x:(width*0.001),y:(height*0.001)})
       setTimer(0)
+      playButtonSound()
+      setMusicRate(1)
+      startMusic()
+      
     
     }
     const Level2 = ()=>{
@@ -163,6 +196,10 @@ useEffect(
       setPotionPosition({x:width/2,y:height/2})
       setMonsterPosition({x:(width*0.001),y:(height*0.001)})
       setTimer(0)
+      playButtonSound()
+      setMusicRate(1.2)
+      startMusic()
+      
     }
     const Level3 = ()=>{
       setSpawnDelay(1000)
@@ -172,6 +209,10 @@ useEffect(
       setPotionPosition({x:width/2,y:height/2})
       setMonsterPosition({x:(width*0.001),y:(height*0.001)})
       setTimer(0)
+      playButtonSound()
+      setMusicRate(1.4)
+      startMusic()
+      
     }
 
   
@@ -180,6 +221,7 @@ useEffect(
   return (
     <>
     <div className='app'>
+    <SoundButton isMuted={isMuted} onToggle={toggleMute} />
     <RulesPanel  style={{position:"absolute", top:'0%', left:"78%"}}/>
     <TimerPanel  text={status} timeLimit={timeLimit}  style={{
   position: "absolute",

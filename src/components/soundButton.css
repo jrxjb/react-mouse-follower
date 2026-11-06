@@ -1,0 +1,50 @@
+.sound-button {  
+  position: fixed;
+  
+  z-index: 50;
+  right: 16px;
+  bottom: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+
+  border: 1px solid #201c14;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #5a4732 0%, #3b2a1a 55%, #241a10 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(220, 200, 160, 0.18),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(15, 10, 5, 0.9);
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+
+
+
+    -webkit-tap-highlight-color: transparent;  
+    user-select: none;                       
+    touch-action: manipulation; 
+}
+
+.sound-button:hover {
+  background: linear-gradient(180deg, #6b5539 0%, #4a3420 55%, #2a1d11 100%);
+  transform: translateY(-1px);
+}
+
+.sound-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(15, 10, 5, 0.9);
+}
+
+.sound-button:focus-visible {
+  outline: 2px solid #a8d94f;
+  outline-offset: 2px;
+}
