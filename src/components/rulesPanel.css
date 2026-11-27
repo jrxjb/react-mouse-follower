@@ -1,10 +1,13 @@
 .rules-panel{
     display:flex;
     flex-direction:column;
-    height:200px;
+    min-height:200px; 
     width:250px;
     padding:14px;
     margin:5px;
+    position: absolute;
+    top: 0;
+    left: 78%;
 
     color:#c2b08a;
     font-family:'Courier New', Courier, monospace;
@@ -55,4 +58,14 @@
 .rules-panel li::before{
   content:'✕';
   color:rgba(180,69,42,0.8);
+}
+
+@media (max-width: 640px), (max-height: 500px){
+  .rules-panel{
+     left: auto;
+    right: calc(6px + env(safe-area-inset-right));
+    top: env(safe-area-inset-top);     
+    transform: rotate(-0.8deg) scale(.78);
+    transform-origin: top right;
+  }
 }

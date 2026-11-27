@@ -1,4 +1,5 @@
 import {  useEffect, useRef, useState } from 'react'
+import { useTouchDrag } from './useTouchDrag' 
 import './App.css'
 import Monster from './components/monster.jsx'
 import PotionButton from './components/potion.jsx'
@@ -20,7 +21,7 @@ import SoundButton from './components/soundButton.jsx'
 
 function getRandomInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1))
-}
+} 
 
 function App() {
   
@@ -40,6 +41,8 @@ function App() {
   const [speed,setSpeed]= useState(0)
   const pointerFrameRef = useRef(0)
   const [isMuted, setIsMuted] = useState(false)
+  const [idleMs,setIdleMs] = useState(800)
+const { reset, check } = useTouchDrag(isPlaying, idleMs)
 
 
 const toggleMute = () => {
@@ -55,7 +58,12 @@ const toggleMute = () => {
 
       if(isPlaying==true){
 const pointerMove = (event) => {
+
+
   const { clientX, clientY } = event
+
+
+
   cancelAnimationFrame(pointerFrameRef.current)
   pointerFrameRef.current = requestAnimationFrame(() => {
     setPointer(prev =>
@@ -131,7 +139,7 @@ useEffect(
 
 
     const togglePotion = () => {
- 
+
   if (spawnDelay == 0) return
 
   if (isPlaying == false) {
@@ -139,23 +147,29 @@ useEffect(
     setStatus("Playing")
     setPotionPosition({x: width/2, y: height/2})
     setMonsterPosition({x: width*0.001, y: height*0.001})
-    setHasMove(false)         
+    setHasMove(false)
+    reset() 
     setTimer(0)
-     playPotionSound()
-    return      
+    playPotionSound()
+    return
   }
+
+ const problem = check()
+if (problem) {
+  setStatus(problem)
+  return
+} 
 
   if (hasMove == true && timer >= 1) {
     setIsPlaying(false)
     setStatus("You win")
-     playWinSound()
+    playWinSound()
   } else if (!hasMove) {
-    setStatus("Gotcha! Move first")    
+    setStatus("Gotcha! Move first")
   } else {
-    setStatus("Too fast! Wait a second") 
+    setStatus("Too fast! Wait a second")
   }
 }
- 
     const clickToLoss=()=>{
   if (!isPlaying) {
     if (spawnDelay === 0) {
@@ -185,6 +199,7 @@ const Level1 = ()=>{
       playButtonSound()
       setMusicRate(1)
       startMusic()
+      setIdleMs(800) 
       
     
     }
@@ -199,6 +214,7 @@ const Level1 = ()=>{
       playButtonSound()
       setMusicRate(1.2)
       startMusic()
+      setIdleMs(500) 
       
     }
     const Level3 = ()=>{
@@ -212,6 +228,7 @@ const Level1 = ()=>{
       playButtonSound()
       setMusicRate(1.4)
       startMusic()
+      setIdleMs(350) 
       
     }
 
@@ -222,7 +239,7 @@ const Level1 = ()=>{
     <>
     <div className='app'>
     <SoundButton isMuted={isMuted} onToggle={toggleMute} />
-    <RulesPanel  style={{position:"absolute", top:'0%', left:"78%"}}/>
+    <RulesPanel />
     <TimerPanel  text={status} timeLimit={timeLimit}  style={{
   position: "absolute",
   left: "50%",
@@ -232,7 +249,7 @@ const Level1 = ()=>{
     <PotionButton onToggle={togglePotion} style={{transform:`translate(${potionPosition.x}px,${potionPosition.y}px)`}}/>
     <Monster key={status} onClick={clickToLoss} style={{left: `${monsterPosition.x-75-5}px`, top: `${monsterPosition.y-75-5}px` }} />    
      {status === "You win"  && <ConfettiBoom mode="boom" />}
-     <section style={{position:"absolute", top:"calc(0% + 230px)",left:"95%"}}>
+     <section className="level-list">
      <LevelButton selectButton={spawnDelay==3000} onSelect={Level1} textLevel='Level 1'/>
      <LevelButton selectButton={spawnDelay==2000} onSelect={Level2} textLevel='Level 2'/>
      <LevelButton selectButton={spawnDelay==1000} onSelect={Level3} textLevel='Level 3'/>
